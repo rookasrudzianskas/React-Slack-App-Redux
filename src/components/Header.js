@@ -4,10 +4,15 @@ import styled from 'styled-components';
 
 const Header = () => {
     return (
-        <div>
+        <HeaderContainer>
 
-        </div>
+        </HeaderContainer>
     );
 };
 
 export default Header;
+
+const HeaderContainer = styled.div`
+  
+`;
+

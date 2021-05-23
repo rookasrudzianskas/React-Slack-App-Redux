@@ -6,6 +6,18 @@ const Header = () => {
     return (
         <HeaderContainer>
 
+            <HeaderLeft>
+
+            </HeaderLeft>
+
+            <HeaderSearch>
+
+            </HeaderSearch>
+
+            <HeaderRight>
+
+            </HeaderRight>
+
         </HeaderContainer>
     );
 };
@@ -16,3 +28,14 @@ const HeaderContainer = styled.div`
   
 `;
 
+const HeaderLeft = styled.div`
+  
+`;
+
+const HeaderSearch = styled.div`
+  
+`;
+
+const HeaderRight = styled.div`
+  
+`;

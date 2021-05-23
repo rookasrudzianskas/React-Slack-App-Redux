@@ -5,9 +5,15 @@ import {BrowserRouter as Router, Link, Switch, Route} from "react-router-dom";
 function App() {
   return (
     <div className="app">
-      <h1>Slack app 🚀</h1>
-
-
+      <Router>
+          <>
+          <Switch>
+              <Route path="/">
+                  <h1>Home 🌶️</h1>
+              </Route>
+          </Switch>
+          </>
+      </Router>
     </div>
   );
 }

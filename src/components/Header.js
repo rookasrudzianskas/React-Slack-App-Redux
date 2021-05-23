@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Header = () => {
     return (
         <HeaderContainer>
-            Rokas
+
         </HeaderContainer>
     );
 };
@@ -13,6 +13,6 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.div`
-  color: red;
+  
 `;
 

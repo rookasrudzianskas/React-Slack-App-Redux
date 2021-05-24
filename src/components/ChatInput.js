@@ -3,11 +3,13 @@ import styled from "styled-components";
 import {Button} from "@material-ui/core";
 import db from "../firebase";
 import firebase from "firebase";
+import {useCollection} from "react-firebase-hooks/firestore";
 
 const ChatInput = ({channelName, channelId }) => {
 
     // const inputRef = useRef(null);
     const [input, setInput] = useState();
+
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -31,7 +33,7 @@ const ChatInput = ({channelName, channelId }) => {
     return (
         <ChatInputContainer>
             <form action="">
-                <input value={input} onChange={event => setInput(event.target.value)} type="text" placeholder={`Message #${channelId}`}/>
+                <input value={input} onChange={event => setInput(event.target.value)} type="text" placeholder={`Message #${channelName}`}/>
                 <Button hidden type="submit" onClick={sendMessage}>SEND</Button>
             </form>
         </ChatInputContainer>

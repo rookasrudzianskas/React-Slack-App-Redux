@@ -4,7 +4,7 @@ import db from "../firebase";
 import {useCollection} from "react-firebase-hooks/firestore";
 
 
-const SidebarOption = ({Icon, title, addChannelOption}) => {
+const SidebarOption = ({Icon, title, addChannelOption, id}) => {
 // accessing channel rooms
 
     const addChannel = () => {
@@ -63,6 +63,40 @@ const SidebarOptionContainer = styled.div`
   }
 `
 
-const SidebarOptionChannel = styled.div`
-  
+const SidebarOptionChannel = styled.h3`
+  padding: 10px 0;
+  font-weight: 300;
 `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

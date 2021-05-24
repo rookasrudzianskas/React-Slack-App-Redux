@@ -50,7 +50,7 @@ const Sidebar = () => {
 
             {/* shows all the channels, from the channel firebase hook*/}
             {channels?.docs.map(doc => (
-                <SidebarOption key={doc.id} id={doc.id} addChannelOption title={doc.data().name} />
+                <SidebarOption key={doc.id} id={doc.id} title={doc.data().name} />
             ))}
 
 

@@ -2,9 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 import db from "../firebase";
 import {useCollection} from "react-firebase-hooks/firestore";
+import {useDispatch} from "react-redux";
+import {enterRoom} from "../features/appSlice";
 
 
 const SidebarOption = ({Icon, title, addChannelOption, id}) => {
+    const dispatch = useDispatch();
 // accessing channel rooms
 
     const addChannel = () => {
@@ -18,8 +21,14 @@ const SidebarOption = ({Icon, title, addChannelOption, id}) => {
     };
 
     const selectChannel = () => {
-
-    }
+      if(id) {
+          /// this is action in reducer
+          // it fires action in reducer, and as the payload comes roomID
+          dispatch(enterRoom({
+              roomId: id,
+          }))
+      }
+    };
 
 
     return (

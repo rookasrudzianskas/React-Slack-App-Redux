@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
 import {Button} from "@material-ui/core";
+import {auth, provider} from "../firebase";
 
 const Login = () => {
 
     const signIn = (e) => {
         e.preventDefault();
 
-
+        auth.signInWithPopup(provider).catch(error => alert(error));
 
     }
     return (
@@ -18,7 +19,7 @@ const Login = () => {
                 <h1>Sign in to the Slack</h1>
                 <p>slack@slack.com</p>
 
-                <Button type="submit" onClick={signIn}>Sign in with Google</Button>
+                <Button onClick={signIn}>Sign in with Google</Button>
             </LoginInnerContainer>
         </LoginContainer>
     );

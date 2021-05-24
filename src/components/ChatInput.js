@@ -1,14 +1,17 @@
 import React, {useRef, useState} from 'react';
 import styled from "styled-components";
 import {Button} from "@material-ui/core";
-import db from "../firebase";
+import db, {auth} from "../firebase";
 import firebase from "firebase";
 import {useCollection} from "react-firebase-hooks/firestore";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 const ChatInput = ({channelName, channelId, chatRef }) => {
 
     // const inputRef = useRef(null);
     const [input, setInput] = useState();
+
+    const [user] = useAuthState(auth);
 
 
     const sendMessage = (e) => {
@@ -23,8 +26,8 @@ const ChatInput = ({channelName, channelId, chatRef }) => {
             // the current point input ref is pointing, and then the item value
            message: input,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            user: "Rokas Rudzianskas",
-            userImage: 'https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg',
+            user: user.displayName,
+            userImage: user.photoURL,
         });
 
         chatRef.current.scrollIntoView({

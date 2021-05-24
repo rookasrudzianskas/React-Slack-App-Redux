@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {InfoOutlined, StarBorderOutlined} from "@material-ui/icons";
 import {useSelector} from "react-redux";
 import {selectRoomId} from "../features/appSlice";
+import ChatInput from "./ChatInput";
 
 const Chat = () => {
     // pull a value from redux

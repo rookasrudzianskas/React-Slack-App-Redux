@@ -12,8 +12,13 @@ import FileCopyIcon from "@material-ui/icons/FileCopy";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
+import {useCollection} from "react-firebase-hooks/firestore";
+import db from "../firebase";
 
 const Sidebar = () => {
+
+    const [channels, loading, error] = useCollection(db.collection("rooms"));
+
     return (
         <SidebarContainer>
             <SidebarHeader>
@@ -43,6 +48,11 @@ const Sidebar = () => {
             <hr />
             <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
 
+            {/* shows all the channels, from the channel firebase hook*/}
+            {channels?.docs.map(doc => (
+                <SidebarOption key={doc.id} id={doc.id} addChannelOption title={doc.data().name} />
+            ))}
+
 
         </SidebarContainer>
     );
@@ -57,7 +67,7 @@ const SidebarContainer = styled.div`
   border-top: 1px solid #49274b;
   max-width: 260px;
   margin-top: 60px;
-  
+
   > hr {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -69,8 +79,8 @@ const SidebarHeader = styled.div`
   display: flex;
   border-bottom: 1px solid #49274b;
   padding: 13px;
-  
-  
+
+
   > .MuiSvgIcon-root {
     padding: 8px;
     color: #49274b;
@@ -88,14 +98,14 @@ const SidebarInfo = styled.div`
     font-weight: 900;
     margin-bottom: 5px;
   }
-  
+
   > h3 {
   display: flex;
     font-size: 13px;
     font-weight: 400;
     align-items: center;
 }
-  
+
   > h3 > .MuiSvgIcon-root {
     font-size: 14px;
     margin-top: 1px;

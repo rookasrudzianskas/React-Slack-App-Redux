@@ -5,7 +5,7 @@ import db from "../firebase";
 import firebase from "firebase";
 import {useCollection} from "react-firebase-hooks/firestore";
 
-const ChatInput = ({channelName, channelId }) => {
+const ChatInput = ({channelName, channelId, chatRef }) => {
 
     // const inputRef = useRef(null);
     const [input, setInput] = useState();
@@ -26,6 +26,11 @@ const ChatInput = ({channelName, channelId }) => {
             user: "Rokas Rudzianskas",
             userImage: 'https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg',
         });
+
+        chatRef.current.scrollIntoView({
+            behavior: "smooth",
+        });
+
         setInput("");
 
     };

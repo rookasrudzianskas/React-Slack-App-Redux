@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styled from "styled-components";
 import {InfoOutlined, StarBorderOutlined} from "@material-ui/icons";
 import {useSelector} from "react-redux";
@@ -17,10 +17,21 @@ const Chat = () => {
         roomId && db.collection("rooms").doc(roomId)
     )
 
-    const [roomMessages] = useCollection(
+    const [roomMessages, loading] = useCollection(
         roomId && db.collection("rooms").doc(roomId).collection('messages').orderBy('timestamp', 'asc')
     );
 
+    const chatRef = useRef(null);
+
+
+    useEffect(() => {
+        // go to the chat reference and scroll into something
+        chatRef?.current?.scrollIntoView({
+            behavior: "smooth",
+        });
+
+
+    }, [roomId, loading]);
     // console.log(roomDetails?.data());
     // console.log(roomMessages);
 
@@ -54,9 +65,12 @@ const Chat = () => {
                         />
                     )
                 })}
+
+                <ChatBottom ref={chatRef} />
             </ChatMessages>
 
             <ChatInput
+                chatRef={chatRef}
                 //Channel name
                 channelId={roomId}
                 channelName={roomDetails?.data().name}
@@ -67,6 +81,10 @@ const Chat = () => {
 };
 
 export default Chat;
+
+const ChatBottom = styled.div`
+  padding-bottom: 200px;
+`
 
 
 const Header = styled.div`

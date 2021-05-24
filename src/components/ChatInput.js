@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import styled from "styled-components";
 import {Button} from "@material-ui/core";
 import db from "../firebase";
@@ -6,7 +6,8 @@ import firebase from "firebase";
 
 const ChatInput = ({channelName, channelId }) => {
 
-    const inputRef = useRef(null);
+    // const inputRef = useRef(null);
+    const [input, setInput] = useState();
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -18,16 +19,19 @@ const ChatInput = ({channelName, channelId }) => {
 
         db.collection('rooms').doc(channelId).collection("messages").add({
             // the current point input ref is pointing, and then the item value
-           message: inputRef.current.value,
+           message: input,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-
+            user: "Rokas Rudzianskas",
+            userImage: 'https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg',
         });
+        setInput("");
+
     };
 
     return (
         <ChatInputContainer>
             <form action="">
-                <input ref={inputRef} type="text" placeholder={`Message #${channelId}`}/>
+                <input value={input} onChange={event => setInput(event.target.value)} type="text" placeholder={`Message #${channelId}`}/>
                 <Button hidden type="submit" onClick={sendMessage}>SEND</Button>
             </form>
         </ChatInputContainer>
